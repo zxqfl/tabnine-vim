@@ -157,19 +157,23 @@ class YouCompleteMe( object ):
     BaseRequest.server_location = 'http://127.0.0.1:' + str( server_port )
     BaseRequest.hmac_secret = hmac_secret
 
-    try:
-      python_interpreter = paths.PathToPythonInterpreter()
-    except RuntimeError as error:
-      error_message = (
-        "Unable to start the ycmd server. {0}. "
-        "Correct the error then restart the server "
-        "with ':YcmRestartServer'.".format( str( error ).rstrip( '.' ) ) )
-      self._logger.exception( error_message )
-      vimsupport.PostVimMessage( error_message )
-      return
+    # try:
+    #   python_interpreter = paths.PathToPythonInterpreter()
+    # except RuntimeError as error:
+    #   error_message = (
+    #     "Unable to start the ycmd server. {0}. "
+    #     "Correct the error then restart the server "
+    #     "with ':YcmRestartServer'.".format( str( error ).rstrip( '.' ) ) )
+    #   self._logger.exception( error_message )
+    #   vimsupport.PostVimMessage( error_message )
+    #   return
 
-    args = [ python_interpreter,
-             paths.PathToServerScript(),
+    this_file_path = os.path.dirname(os.path.realpath(__file__))
+    tabnine_path = os.path.join(this_file_path, '../../binaries/')
+
+
+    args = [ None,
+             '--log-file-path=/home/zxqfl/emu.log',
              '--port={0}'.format( server_port ),
              '--options_file={0}'.format( options_file.name ),
              '--log={0}'.format( self._user_options[ 'log_level' ] ),
@@ -186,8 +190,24 @@ class YouCompleteMe( object ):
     if self._user_options[ 'keep_logfiles' ]:
       args.append( '--keep_logfiles' )
 
-    self._server_popen = utils.SafePopen( args, stdin_windows = PIPE,
-                                          stdout = PIPE, stderr = PIPE )
+    arch_platforms = [
+      "x86_64-apple-darwin",
+      "x86_64-pc-windows-gnu",
+      "x86_64-unknown-linux-gnu",
+      "i686-apple-darwin",
+      "i686-pc-windows-gnu",
+      "i686-unknown-linux-gnu",
+    ]
+    for arch_platform in arch_platforms:
+      args[0] = os.path.join(tabnine_path, "0.5.0", arch_platform, utils.ExecutableName("TabNine"))
+      try:
+        popen = utils.SafePopen( args, stdin = PIPE, stdin_windows = PIPE,
+                                              stdout = PIPE, stderr = PIPE )
+      except OSError:
+        continue
+      if popen.poll() is None:
+        self._server_popen = popen
+        break
 
 
   def _SetUpLogging( self ):
