@@ -29,6 +29,7 @@ import logging
 import os
 import signal
 import vim
+import sys
 from subprocess import PIPE
 from tempfile import NamedTemporaryFile
 from ycm import base, paths, vimsupport
@@ -157,23 +158,11 @@ class YouCompleteMe( object ):
     BaseRequest.server_location = 'http://127.0.0.1:' + str( server_port )
     BaseRequest.hmac_secret = hmac_secret
 
-    # try:
-    #   python_interpreter = paths.PathToPythonInterpreter()
-    # except RuntimeError as error:
-    #   error_message = (
-    #     "Unable to start the ycmd server. {0}. "
-    #     "Correct the error then restart the server "
-    #     "with ':YcmRestartServer'.".format( str( error ).rstrip( '.' ) ) )
-    #   self._logger.exception( error_message )
-    #   vimsupport.PostVimMessage( error_message )
-    #   return
-
     this_file_path = os.path.dirname(os.path.realpath(__file__))
-    tabnine_path = os.path.join(this_file_path, '../../binaries/')
+    tabnine_binary_path = os.path.join(this_file_path, '../../binaries/')
 
 
-    args = [ None,
-             '--port={0}'.format( server_port ),
+    args = [ '--port={0}'.format( server_port ),
              '--options_file={0}'.format( options_file.name ),
              '--log={0}'.format( self._user_options[ 'log_level' ] ),
              '--idle_suicide_seconds={0}'.format(
@@ -189,24 +178,13 @@ class YouCompleteMe( object ):
     if self._user_options[ 'keep_logfiles' ]:
       args.append( '--keep_logfiles' )
 
-    arch_platforms = [
-      "x86_64-apple-darwin",
-      "x86_64-pc-windows-gnu",
-      "x86_64-unknown-linux-gnu",
-      "i686-apple-darwin",
-      "i686-pc-windows-gnu",
-      "i686-unknown-linux-gnu",
-    ]
-    for arch_platform in arch_platforms:
-      args[0] = os.path.join(tabnine_path, "0.5.0", arch_platform, utils.ExecutableName("TabNine"))
-      try:
-        popen = utils.SafePopen( args, stdin = PIPE, stdin_windows = PIPE,
-                                              stdout = PIPE, stderr = PIPE )
-      except OSError:
-        continue
-      if popen.poll() is None:
-        self._server_popen = popen
-        break
+    try:
+      self._server_popen = start_tabnine_proc(cmd_args=args, binary_dir=tabnine_binary_path)
+    except RuntimeError as error:
+      error_message = str(error)
+      self._logger.exception(error_message)
+      vimsupport.PostVimMessage(error_message)
+      return
 
 
   def _SetUpLogging( self ):
@@ -770,3 +748,71 @@ class YouCompleteMe( object ):
         'description': snippet[ 'description' ] }
       for trigger, snippet in iteritems( snippets )
     ]
+
+def parse_semver(s):
+    try:
+        return [int(x) for x in s.split('.')]
+    except ValueError:
+        return []
+
+assert parse_semver("0.01.10") == [0, 1, 10]
+assert parse_semver("hello") == []
+assert parse_semver("hello") < parse_semver("0.9.0") < parse_semver("1.0.0")
+
+def start_tabnine_proc(*, cmd_args, binary_dir):
+  def join_path(*args):
+    return os.path.join(binary_dir, *args)
+  versions = os.listdir(binary_dir)
+  versions.sort(key=parse_semver, reverse=True)
+  arch_platforms = [
+    "x86_64-apple-darwin",
+    "x86_64-pc-windows-gnu",
+    "x86_64-unknown-linux-gnu",
+    "i686-apple-darwin",
+    "i686-pc-windows-gnu",
+    "i686-unknown-linux-gnu",
+  ]
+  arch_platforms.sort(key=guess_platform_suitability, reverse=True)
+  choices = []
+  for a in arch_platforms:
+    for v in versions:
+      if 'windows' in a:
+        executable_name = "TabNine.exe"
+      else:
+        executable_name = "TabNine"
+      choices.append(join_path(v, a, executable_name))
+  for c in choices:
+    try:
+      popen = utils.SafePopen(
+        [c] + cmd_args,
+        stdin = PIPE,
+        stdin_windows = PIPE,
+        stdout = PIPE,
+        stderr = PIPE)
+      if popen.poll() is None:
+        return popen
+    except OSError:
+      pass
+  raise RuntimeError(
+    "Can't start TabNine. Tried the following paths: " + str(choices))
+
+def guess_platform_suitability(platform):
+  score = 0
+  if 'x86_64' in platform:
+    score += 1
+  if 'windows' in platform:
+    if sys.platform in ['win32', 'cygwin']:
+      score += 20
+    else:
+      score -= 20
+  if 'darwin' in platform:
+    if sys.platform == 'darwin':
+      score += 10
+    else:
+      score -= 10
+  if 'linux' in platform:
+    if sys.platform == 'linux':
+      score += 10
+    else:
+      score -= 10
+  return score
