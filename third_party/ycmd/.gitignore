@@ -1,0 +1,72 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+
+# Compiled Dynamic libraries
+*.dll
+*.so*
+*.dylib
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+
+# Clang archives
+clang_archives
+
+# CMake
+CMakeCache.txt
+CMakeFiles
+Makefile
+cmake_install.cmake
+install_manifest.txt
+
+# Python
+*.py[cod]
+
+# Installer logs
+pip-log.txt
+
+# Unit test / coverage reports
+.coverage
+.coverage.*
+cover/
+.tox
+nosetests.xml
+.noseids
+
+# custom
+ycm_core_tests
+PYTHON_USED_DURING_BUILDING
+
+# When we use the bcp tool to copy over the parts of boost we care about, it
+# also copies some cruft files we don't need; this ignores them
+cpp/BoostParts/libs/*/build
+cpp/BoostParts/libs/*/test
+
+# Exclude auto generated vim doc tags.
+doc/tags
+
+# Exclude tern installation area
+third_party/tern_runtime/node_modules
+third_party/tern_runtime/package-lock.json
+
+# Exclude vagrant directory
+.vagrant/
+
+# Exclude the coverage build output directory
+.build/
+
+# Exclude gcov output
+*.gcov
+# And python coverage output, when running manually
+coverage.xml
+
+# API docs
+docs/node_modules
+docs/package-lock.json
+
+# jdt.ls
+third_party/eclipse.jdt.ls

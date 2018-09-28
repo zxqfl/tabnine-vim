@@ -1,0 +1,26 @@
+{
+    "folders":
+    [
+        {
+            "name": "OmniSharp",
+            "follow_symlinks": true,
+            "path": ".",
+            "file_exclude_patterns":
+            [
+                "*.meta",
+                "*.png",
+                "*.dll",
+                "*.mdb"
+            ],
+            "folder_exclude_patterns":
+            [
+                "Library"
+            ]
+        }
+    ],
+    "settings":
+    {
+        "tab_size": 4
+    },
+    "solution_file": "./OmniSharp.sln"
+}

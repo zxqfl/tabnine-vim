@@ -1,0 +1,5 @@
+Found 4 candidates:
+  func Alignof(any) uintptr
+  func Offsetof(any) uintptr
+  func Sizeof(any) uintptr
+  type Pointer uintptr

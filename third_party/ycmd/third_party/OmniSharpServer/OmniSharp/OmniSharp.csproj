@@ -1,0 +1,373 @@
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{39D6E519-26A4-47D7-B3B1-A7545EBCE23B}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OmniSharp</RootNamespace>
+    <AssemblyName>OmniSharp</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Commandlineparameters>-p 2000 -s /Users/jason/.vim/bundle/Omnisharp/server/OmniSharp.sln</Commandlineparameters>
+    <Externalconsole>true</Externalconsole>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\OmniSharp.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\OmniSharp.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>OmniSharp.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Nancy.Metadata.Module">
+      <HintPath>..\packages\Nancy.MetaData.0.23.2\lib\net40\Nancy.Metadata.Module.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy.Swagger">
+      <HintPath>..\packages\Nancy.Swagger.0.1.0-alpha3\lib\net40\Nancy.Swagger.dll</HintPath>
+    </Reference>
+    <Reference Include="Swagger.ObjectModel">
+      <HintPath>..\packages\Swagger.ObjectModel.0.1.0-alpha3\lib\net40\Swagger.ObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="monodoc">
+      <HintPath>..\packages\monodoc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Abstractions">
+      <HintPath>..\packages\System.IO.Abstractions.1.4.0.92\lib\net35\System.IO.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy">
+      <HintPath>..\packages\Nancy.0.23.2\lib\net40\Nancy.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy.Hosting.Self">
+      <HintPath>..\packages\Nancy.Hosting.Self.0.23.2\lib\net40\Nancy.Hosting.Self.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AutoComplete\HelpExtension.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AutoComplete\HelpService.cs" />
+    <Compile Include="AutoComplete\Metadata\AutoCompleteMetadataModule.cs" />
+    <Compile Include="AutoComplete\Metadata\AutoCompleteRequestMetadataProvider.cs" />
+    <Compile Include="AutoComplete\Metadata\AutoCompleteResponseMetadataProvider.cs" />
+    <Compile Include="Build\Metadata\BuildCommandMetadataModule.cs" />
+    <Compile Include="CheckAliveStatus\Metadata\CheckAliveStatusMetadataModule.cs" />
+    <Compile Include="CheckReadyStatus\Metadata\CheckReadyStatusMetadataModule.cs" />
+    <Compile Include="CodeActions\Metadata\FixUsingsMetadataModule.cs" />
+    <Compile Include="CodeActions\Metadata\GetCodeActionsMetadataModule.cs" />
+    <Compile Include="CodeActions\Metadata\RunCodeActionMetadataModule.cs" />
+    <Compile Include="CodeFormat\Metadata\CodeFormatMetadataModule.cs" />
+    <Compile Include="CodeIssues\CodeIssueProviders.cs" />
+    <Compile Include="CodeIssues\CodeIssuesHandler.cs" />
+    <Compile Include="CodeIssues\CodeIssuesModule.cs" />
+    <Compile Include="CodeIssues\GetCodeIssuesResponse.cs" />
+    <Compile Include="CodeIssues\Metadata\CodeIssuesMetadataModule.cs" />
+    <Compile Include="CodeIssues\RunCodeIssuesResponse.cs" />
+    <Compile Include="Common\CygPathWrapper.cs" />
+    <Compile Include="Configuration\OmniSharpConfiguration.cs" />
+    <Compile Include="Configuration\PathMode.cs" />
+    <Compile Include="Configuration\PathReplacement.cs" />
+    <Compile Include="Configuration\TestCommands.cs" />
+    <Compile Include="CurrentFileMembers\Metadata\CurrentFileMembersAsTreeMetadataModule.cs" />
+    <Compile Include="CurrentFileMembers\Metadata\CurrentFileMembersAsFlatMetadataModule.cs" />
+    <Compile Include="CurrentFileMembers\Metadata\CurrentFileTopLevelTypesMetadataModule.cs" />
+    <Compile Include="FindSymbols\Metadata\FindSymbolsMetadataModule.cs" />
+    <Compile Include="FindTypes\Metadata\FindTypesMetadataModule.cs" />
+    <Compile Include="FindUsages\Metadata\FindUsagesMetadataModule.cs" />
+    <Compile Include="GotoDefinition\Metadata\GotoDefinitionRequestMetadataProvider.cs" />
+    <Compile Include="GotoDefinition\Metadata\GotoDefinitionResponseMetadataProvider.cs" />
+    <Compile Include="GotoFile\Metadata\GotoFileMetadataModule.cs" />
+    <Compile Include="GotoImplementation\Metadata\GotoImplementationMetadataModule.cs" />
+    <Compile Include="GotoRegion\Metadata\GotoRegionMetadataModule.cs" />
+    <Compile Include="LookupAllTypes\Metadata\LookupAllTypesMetadataModule.cs" />
+    <Compile Include="Overrides\Metadata\GetOverrideTargetsMetadataModule.cs" />
+    <Compile Include="Overrides\Metadata\RunOverrideTargetMetadataModule.cs" />
+    <Compile Include="ProjectManipulation\AddReference\Metadata\AddReferenceMetadataModule.cs" />
+    <Compile Include="ProjectManipulation\AddToProject\Metadata\AddToProjectMetadataModule.cs" />
+    <Compile Include="ProjectManipulation\RemoveFromProject\Metadata\RemoveFromProjectMetadataModule.cs" />
+    <Compile Include="ReloadSolution\Metadata\ReloadSolutionMetadataModule.cs" />
+    <Compile Include="Rename\Metadata\RenameMetadataModule.cs" />
+    <Compile Include="SemanticErrors\Metadata\SemanticErrorsMetadataModule.cs" />
+    <Compile Include="StopServer\Metadata\StopServerMetadataModule.cs" />
+    <Compile Include="SyntaxErrors\CodeCheckHandler.cs" />
+    <Compile Include="SyntaxErrors\CodeCheckModule.cs" />
+    <Compile Include="SyntaxErrors\Metadata\CodeCheckMetadataModule.cs" />
+    <Compile Include="SyntaxErrors\Metadata\SyntaxErrorsMetadataModule.cs" />
+    <Compile Include="TestContextInformation\GetContextResponse.cs" />
+    <Compile Include="TestContextInformation\TestCommandRequest.cs" />
+    <Compile Include="Documentation\DocumentationFetcher.cs" />
+    <Compile Include="Documentation\MonoDocDocumentationProvider.cs" />
+    <Compile Include="TestContextInformation\GetTestContextModule.cs" />
+    <Compile Include="TestContextInformation\GetTestContextHandler.cs" />
+    <Compile Include="TestContextInformation\GetTestContextResponse.cs" />
+    <Compile Include="Build\BuildCommandBuilder.cs" />
+    <Compile Include="Build\BuildCommandModule.cs" />
+    <Compile Include="Common\Error.cs" />
+    <Compile Include="Common\FileSystem.cs" />
+    <Compile Include="Common\IFileSystem.cs" />
+    <Compile Include="FindSymbols\FindSymbolsHandler.cs" />
+    <Compile Include="FindSymbols\FindSymbolsModule.cs" />
+    <Compile Include="FindTypes\FindTypesHandler.cs" />
+    <Compile Include="FindTypes\FindTypesModule.cs" />
+    <Compile Include="LookupAllTypes\LookupAllTypesHandler.cs" />
+    <Compile Include="LookupAllTypes\LookupAllTypesModule.cs" />
+    <Compile Include="LookupAllTypes\LookupAllTypesRequest.cs" />
+    <Compile Include="LookupAllTypes\LookupAllTypesResponse.cs" />
+    <Compile Include="Overrides\GetOverrideTargetsModule.cs" />
+    <Compile Include="Overrides\GetOverrideTargetsResponse.cs" />
+    <Compile Include="Overrides\OverrideContext.cs" />
+    <Compile Include="Overrides\OverrideHandler.cs" />
+    <Compile Include="Overrides\RunOverrideTargetModule.cs" />
+    <Compile Include="Overrides\RunOverrideTargetRequest.cs" />
+    <Compile Include="Overrides\RunOverrideTargetResponse.cs" />
+    <Compile Include="Platform.cs" />
+    <Compile Include="ProjectManipulation\AddReference\AddFileReferenceProcessor.cs" />
+    <Compile Include="ProjectManipulation\AddReference\AddGacReferenceProcessor.cs" />
+    <Compile Include="ProjectManipulation\AddReference\AddProjectReferenceProcessor.cs" />
+    <Compile Include="ProjectManipulation\AddReference\AddReferenceHandler.cs" />
+    <Compile Include="ProjectManipulation\AddReference\AddReferenceModule.cs" />
+    <Compile Include="ProjectManipulation\AddReference\AddReferenceRequest.cs" />
+    <Compile Include="ProjectManipulation\AddReference\AddReferenceResponse.cs" />
+    <Compile Include="ProjectManipulation\AddReference\AddReferenceProcessorFactory.cs" />
+    <Compile Include="ProjectManipulation\AddReference\IReferenceProcessor.cs" />
+    <Compile Include="ProjectManipulation\AddReference\ReferenceProcessorBase.cs" />
+    <Compile Include="ProjectManipulation\AddToProject\AddToProjectHandler.cs" />
+    <Compile Include="ProjectManipulation\AddToProject\AddToProjectModule.cs" />
+    <Compile Include="ProjectManipulation\AddToProject\AddToProjectRequest.cs" />
+    <Compile Include="ProjectManipulation\ProjectNotFoundException.cs" />
+    <Compile Include="AutoComplete\AutoCompleteResponse.cs" />
+    <Compile Include="AutoComplete\CompletionDataExtensions.cs" />
+    <Compile Include="Build\BuildHandler.cs" />
+    <Compile Include="Build\BuildLogParser.cs" />
+    <Compile Include="Build\BuildModule.cs" />
+    <Compile Include="Build\BuildResponse.cs" />
+    <Compile Include="CodeFormat\CodeFormatHandler.cs" />
+    <Compile Include="CodeFormat\CodeFormatModule.cs" />
+    <Compile Include="CodeFormat\CodeFormatResponse.cs" />
+    <Compile Include="CodeFormat\CodeFormatRequest.cs" />
+    <Compile Include="Extensions\NodeExtensions.cs" />
+    <Compile Include="FindUsages\AstNodeExtensions.cs" />
+    <Compile Include="FindUsages\FindUsagesHandler.cs" />
+    <Compile Include="FindUsages\FindUsagesModule.cs" />
+    <Compile Include="FindUsages\FindUsagesRequest.cs" />
+    <Compile Include="FindUsages\MemberCollector.cs" />
+    <Compile Include="Common\QuickFix.cs" />
+    <Compile Include="CheckReadyStatus\CheckReadyStatusModule.cs" />
+    <Compile Include="CodeActions\CodeActionProviders.cs" />
+    <Compile Include="CodeActions\GetCodeActionsHandler.cs" />
+    <Compile Include="CodeActions\GetCodeActionsModule.cs" />
+    <Compile Include="CodeActions\GetCodeActionsResponse.cs" />
+    <Compile Include="ProjectManipulation\RemoveFromProject\RemoveFromProjectHandler.cs" />
+    <Compile Include="ProjectManipulation\RemoveFromProject\RemoveFromProjectModule.cs" />
+    <Compile Include="ProjectManipulation\RemoveFromProject\RemoveFromProjectRequest.cs" />
+    <Compile Include="ProjectManipulation\RemoveFromProject\XDocumentExtensions.cs" />
+    <Compile Include="Refactoring\OmniSharpScript.cs" />
+    <Compile Include="Refactoring\OmniSharpRefactoringContext.cs" />
+    <Compile Include="CodeActions\RunCodeActionModule.cs" />
+    <Compile Include="CodeActions\RunCodeActionRequest.cs" />
+    <Compile Include="CodeActions\RunCodeActionsResponse.cs" />
+    <Compile Include="ReloadSolution\ReloadSolutionModule.cs" />
+    <Compile Include="CheckAliveStatus\CheckAliveStatusModule.cs" />
+    <Compile Include="Rename\ModifiedFileResponse.cs" />
+    <Compile Include="Rename\RenameHandler.cs" />
+    <Compile Include="Rename\RenameModule.cs" />
+    <Compile Include="Rename\RenameRequest.cs" />
+    <Compile Include="Rename\RenameResponse.cs" />
+    <Compile Include="Solution\Fusion.cs" />
+    <Compile Include="Solution\GacInterop.cs" />
+    <Compile Include="Solution\IProject.cs" />
+    <Compile Include="Solution\OrphanProject.cs" />
+    <Compile Include="Solution\StringExtensions.cs" />
+    <Compile Include="StopServer\StopServerModule.cs" />
+    <Compile Include="SyntaxErrors\SyntaxErrorsModule.cs" />
+    <Compile Include="Parser\BufferParser.cs" />
+    <Compile Include="GotoDefinition\GotoDefinitionHandler.cs" />
+    <Compile Include="GotoImplementation\GotoImplementationModule.cs" />
+    <Compile Include="GotoImplementation\GotoImplementationRequest.cs" />
+    <Compile Include="GotoImplementation\GotoImplementationHandler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GotoImplementation\Location.cs" />
+    <Compile Include="GotoDefinition\GotoDefinitionResponse.cs" />
+    <Compile Include="GotoDefinition\Metadata\GotoDefinitionMetadataModule.cs" />
+    <Compile Include="Parser\ParsedResult.cs" />
+    <Compile Include="AutoComplete\AutoCompleteModule.cs" />
+    <Compile Include="AutoComplete\AutoCompleteRequest.cs" />
+    <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Documentation\DocumentationConverter.cs" />
+    <Compile Include="AutoComplete\CompletionData.cs" />
+    <Compile Include="AutoComplete\AutoCompleteHandler.cs" />
+    <Compile Include="GotoDefinition\GotoDefinitionModule.cs" />
+    <Compile Include="GotoDefinition\GotoDefinitionRequest.cs" />
+    <Compile Include="Common\Request.cs" />
+    <Compile Include="SemanticErrors\SemanticErrorsHandler.cs" />
+    <Compile Include="SemanticErrors\SemanticErrorsModule.cs" />
+    <Compile Include="SemanticErrors\SemanticErrorsResponse.cs" />
+    <Compile Include="Solution\CSharpFile.cs" />
+    <Compile Include="Solution\CSharpProject.cs" />
+    <Compile Include="Logger.cs" />
+    <Compile Include="AutoComplete\MyCompletionCategory.cs" />
+    <Compile Include="Options.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Solution\ProjectReference.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="AutoComplete\CompletionDataFactory.cs" />
+    <Compile Include="Solution\CSharpSolution.cs" />
+    <Compile Include="AutoComplete\StringExtensions.cs" />
+    <Compile Include="Documentation\XmlDocumentationProviderFactory.cs" />
+    <Compile Include="SyntaxErrors\SyntaxErrorsHandler.cs" />
+    <Compile Include="SyntaxErrors\SyntaxErrorsResponse.cs" />
+    <Compile Include="TypeLookup\Metadata\TypeLookupMetadataModule.cs" />
+    <Compile Include="TypeLookup\TypeLookupHandler.cs" />
+    <Compile Include="TypeLookup\TypeLookupResponse.cs" />
+    <Compile Include="TypeLookup\TypeLookupModule.cs" />
+    <Compile Include="TypeLookup\TypeLookupRequest.cs" />
+    <Compile Include="Common\QuickFixResponse.cs" />
+    <Compile Include="AutoComplete\BufferContext.cs" />
+    <Compile Include="CurrentFileMembers\CurrentFileMembersHandler.cs" />
+    <Compile Include="CurrentFileMembers\CurrentFileMembersRequest.cs" />
+    <Compile Include="CurrentFileMembers\Node.cs" />
+    <Compile Include="CurrentFileMembers\CurrentFileTopLevelTypesModule.cs" />
+    <Compile Include="CurrentFileMembers\CurrentFileMembersAsTreeModule.cs" />
+    <Compile Include="CurrentFileMembers\CurrentFileMembersAsTreeResponse.cs" />
+    <Compile Include="CurrentFileMembers\CurrentFileMembersAsFlatModule.cs" />
+    <Compile Include="GotoFile\GotoFileModule.cs" />
+    <Compile Include="GotoFile\GotoFileHandler.cs" />
+    <Compile Include="GotoRegion\GotoRegionHandler.cs" />
+    <Compile Include="GotoRegion\GotoRegionModule.cs" />
+    <Compile Include="GotoRegion\GetDirectivesAstVisitor.cs" />
+    <Compile Include="UpdateBuffer\Metadata\UpdateBufferMetadataModule.cs" />
+    <Compile Include="UpdateBuffer\UpdateBufferModule.cs" />
+    <Compile Include="CodeActions\GetCodeActionRequest.cs" />
+    <Compile Include="Solution\ProjectFinder.cs" />
+    <Compile Include="CodeActions\FixUsingsHandler.cs" />
+    <Compile Include="CodeActions\FixUsingsResponse.cs" />
+    <Compile Include="CodeActions\FixUsingsModule.cs" />
+    <Compile Include="Solution\CSharpFolder.cs" />
+    <Compile Include="AutoComplete\SnippetGenerator.cs" />
+    <Compile Include="Build\BuildTargetRequest.cs" />
+    <Compile Include="Build\BuildTargetResponse.cs" />
+    <Compile Include="AutoComplete\ReturnTypeAmbience.cs" />
+    <Compile Include="Solution\AssemblySearch.cs" />
+    <Compile Include="Solution\Project.cs" />
+    <Compile Include="Solution\SolutionPicker.cs" />
+    <Compile Include="Common\Metadata\QuickFixResponseMetadataProvider.cs" />
+    <Compile Include="Common\Metadata\QuickFixMetadataProvider.cs" />
+    <Compile Include="Common\Metadata\RequestMetadataProvider.cs" />
+    <Compile Include="ProcessExtensions.cs" />
+    <Compile Include="PlatformHelper.cs" />
+    <Compile Include="FindProjects\FindProjectsHandler.cs" />
+    <Compile Include="FindProjects\FindProjectsModule.cs" />
+    <Compile Include="FindProjects\FindProjectsResponse.cs" />
+    <Compile Include="FindProjects\MsBuildProject.cs" />
+    <Compile Include="FindProjects\MsBuildWorkspaceInformation.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="config.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Microsoft.Build.Evaluation\Microsoft.Build.Evaluation.csproj">
+      <Project>{3650EB54-3511-4009-B430-3DA4BBFD9D7F}</Project>
+      <Name>Microsoft.Build.Evaluation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NRefactory\ICSharpCode.NRefactory.Cecil\ICSharpCode.NRefactory.Cecil.csproj">
+      <Project>{2B8F4F83-C2B3-4E84-A27B-8DEE1BE0E006}</Project>
+      <Name>ICSharpCode.NRefactory.Cecil</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NRefactory\ICSharpCode.NRefactory.CSharp.Refactoring\ICSharpCode.NRefactory.CSharp.Refactoring.csproj">
+      <Project>{2A705FC6-1A9E-4941-9E47-254D79F2D9D5}</Project>
+      <Name>ICSharpCode.NRefactory.CSharp.Refactoring</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NRefactory\ICSharpCode.NRefactory\ICSharpCode.NRefactory.csproj">
+      <Project>{3B2A5653-EC97-4001-BB9B-D90F1AF2C371}</Project>
+      <Name>ICSharpCode.NRefactory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NRefactory\ICSharpCode.NRefactory.CSharp\ICSharpCode.NRefactory.CSharp.csproj">
+      <Project>{53DCA265-3C3C-42F9-B647-F72BA678122B}</Project>
+      <Name>ICSharpCode.NRefactory.CSharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\cecil\Mono.Cecil.csproj">
+      <Project>{D68133BD-1E63-496E-9EDE-4FBDBF77B486}</Project>
+      <Name>Mono.Cecil</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup />
+  <!--NuGet package restore is disabled because xbuild fetches packages on every build-->
+  <!--<Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />-->
+  <!--<Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">-->
+  <!--<PropertyGroup>-->
+  <!--<ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>-->
+  <!--</PropertyGroup>-->
+  <!--<Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />-->
+  <!--</Target>-->
+</Project>

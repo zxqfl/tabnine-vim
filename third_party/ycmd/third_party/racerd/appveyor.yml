@@ -1,0 +1,20 @@
+install:
+  # Download and install Rust and Cargo using rustup.
+  - appveyor DownloadFile https://static.rust-lang.org/rustup/dist/i686-pc-windows-gnu/rustup-init.exe
+  - rustup-init.exe -y
+  - set PATH=%USERPROFILE%\.cargo\bin;%PATH%
+  - rustup update
+  - rustc -Vv
+  - cargo -V
+  # Download Rust sources.
+  - rustup component add rust-src
+  - for /f %%i in ('rustc --print sysroot') do set RUST_SRC_PATH=%%i\lib\rustlib\src\rust\src
+  - set RUST_BACKTRACE=1
+
+build: false
+
+cache:
+  - '%USERPROFILE%\.cargo'
+
+test_script:
+  - cargo test --verbose
