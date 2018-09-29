@@ -62,3 +62,5 @@ doc/tags
 sig
 registration_key
 auth
+binaries
+!binaries/0.5.0

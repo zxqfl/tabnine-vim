@@ -759,7 +759,7 @@ assert parse_semver("0.01.10") == [0, 1, 10]
 assert parse_semver("hello") == []
 assert parse_semver("hello") < parse_semver("0.9.0") < parse_semver("1.0.0")
 
-def start_tabnine_proc(*, cmd_args, binary_dir):
+def start_tabnine_proc(cmd_args, binary_dir):
   def join_path(*args):
     return os.path.join(binary_dir, *args)
   versions = os.listdir(binary_dir)
