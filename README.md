@@ -1,3 +1,10 @@
-This is the TabNine client for [TabNine](https://tabnine.com). It is adapted from [YouCompleteMe](https://github.com/Valloric/YouCompleteMe).
+This is the TabNine client for [TabNine](https://tabnine.com), the all-language autocompleter.
+
+- Indexes your whole project, reading your .gitignore to determine which files to index.
+- Type long variable names in just a few keystrokes using the mnemonic completion engine.
+- Zero configuration. TabNine works out of the box.
+- Highly responsive: typically produces a list of suggestions in less than 10 milliseconds.
+
+The Vim client for TabNine is adapted from [YouCompleteMe](https://github.com/Valloric/YouCompleteMe).
 
 A note on licensing: this repo includes source code as well as packaged TabNine binaries. The GPLv3 license only applies to the source code, not the binaries. The binaries are covered by the [TabNine End User License Agreement](https://tabnine.com/eula).
