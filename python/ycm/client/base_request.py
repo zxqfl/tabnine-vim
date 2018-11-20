@@ -238,6 +238,7 @@ def BuildRequestData( buffer_number = None ):
 def _JsonFromFuture( future ):
   response = future.result()
   _ValidateResponseObject( response )
+  response.encoding = 'utf-8'
   if response.status_code == BaseRequest.Requests().codes.server_error:
     raise MakeServerException( response.json() )
 
