@@ -63,4 +63,6 @@ sig
 registration_key
 auth
 binaries/*
-!binaries/0.6.0
+!binaries/1.0.9
+
+.DS_STORE
