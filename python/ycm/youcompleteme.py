@@ -162,7 +162,8 @@ class YouCompleteMe( object ):
     tabnine_binary_path = os.path.join(this_file_path, '../../binaries/')
 
 
-    args = [ '--port={0}'.format( server_port ),
+    args = [ '--client=vim',
+             '--port={0}'.format( server_port ),
              '--options_file={0}'.format( options_file.name ),
              '--log={0}'.format( self._user_options[ 'log_level' ] ),
              '--idle_suicide_seconds={0}'.format(
