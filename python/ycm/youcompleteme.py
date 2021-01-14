@@ -30,6 +30,8 @@ import os
 import signal
 import vim
 import sys
+import platform as sys_platform
+
 from subprocess import PIPE
 from tempfile import NamedTemporaryFile
 from ycm import base, paths, vimsupport
@@ -760,6 +762,7 @@ def start_tabnine_proc(cmd_args, binary_dir):
   versions = os.listdir(binary_dir)
   versions.sort(key=parse_semver, reverse=True)
   arch_platforms = [
+    "aarch64-apple-darwin",
     "x86_64-apple-darwin",
     "x86_64-pc-windows-gnu",
     "x86_64-unknown-linux-musl",
@@ -805,6 +808,13 @@ def guess_platform_suitability(platform):
       score += 10
     else:
       score -= 10
+    
+    if 'aarch64' in platform:
+      if sys_platform.machine() == 'arm64':
+        score += 5
+      else:
+        score -= 5
+
   if 'linux' in platform:
     if sys.platform == 'linux':
       score += 10
